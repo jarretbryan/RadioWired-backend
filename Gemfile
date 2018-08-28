@@ -33,7 +33,7 @@ gem 'active_model_serializers'
 
 # Use Rest.Client to speak to third party API
 
-gem 'rest-client', '~> 1.8'
+gem 'unirest'
 
 # gem to maintain api keys as in .env as environment variables
 

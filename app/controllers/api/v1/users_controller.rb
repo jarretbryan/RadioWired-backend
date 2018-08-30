@@ -16,8 +16,8 @@ class Api::V1::UsersController < ApplicationController
 
 
     def register
-        # @user = User.find_or_create_by(user_params)
-        @user = User.create(user_params)
+        # @user = User.find_or_create_by(register_user_params)
+        @user = User.create(register_user_params) 
         if @user.save
             response ={message: 'User registration accepted!'}
             render json: @user, status: :accepted
@@ -37,8 +37,9 @@ class Api::V1::UsersController < ApplicationController
         @user = User.find(params[:id])
     end
 
-    def user_params
-        params.permit(:email, :password_digest)
+    def register_user_params
+        # params.permit(:username, :password_digest)
+        params.permit(:email, :password, :username, :profile_image)
     end
 
 end

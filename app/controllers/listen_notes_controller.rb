@@ -1,0 +1,2 @@
+class ListenNotesController < ApplicationController
+end

@@ -28,7 +28,7 @@ class Api::V1::PlaylistsController < ApplicationController
     end
 
     def new_playlist_params
-        params.permit(:title, :description, :genre)
+        params.permit(:title, :description, :genre, :user_id)
     end
 
 end

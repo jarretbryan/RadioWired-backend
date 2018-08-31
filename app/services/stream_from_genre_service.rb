@@ -2,9 +2,12 @@ require 'json'
 ## test run for genre
 
 class StreamFromGenre
-  def initialize(params)
-    @playlist = params[:playlist]
-  end
+  # def initialize(params)
+  #   @playlist = params[:playlist]
+  # end
+
+  # treat this like an adapter
+  # might refactor to make this an adapter object, not a service object 
 
   # i have to iterate through an object that has all the key value pairs for genre, and pass that into my response below
 

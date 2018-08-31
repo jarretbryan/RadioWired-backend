@@ -1,6 +1,11 @@
+# require_relative '../../../services/stream_from_genre_service'
+
 class Api::V1::UsersController < ApplicationController
 
+    # include ListenNotes
+
     before_action :get_user, only: [:show, :update, :destroy]
+    before_action :create_genres, only: [:register]
     
 
     # Not for use in front end client
@@ -41,5 +46,27 @@ class Api::V1::UsersController < ApplicationController
         # params.permit(:username, :password_digest)
         params.permit(:email, :password, :username, :profile_image)
     end
+
+    def create_genres
+        # byebug
+        if Genre.all.length < 2 
+            response = Unirest.get "https://listennotes.p.mashape.com/api/v1/genres", 
+            headers:{
+                "X-Mashape-Key" => ENV['X_MASHAPE_KEY'], 
+                "X-Mashape-Host" => ENV['X_MASHAPE_HOST']
+            }
+            byebug
+            
+
+        genre_array = JSON.parse(response.raw_body)['genres']
+
+        genre_array.each do |genre_obj|
+            Genre.create(name: genre_obj['name'], api_id: genre_obj['id'])
+        end
+    end
+
+  end
+
+
 
 end

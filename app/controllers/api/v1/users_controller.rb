@@ -55,7 +55,7 @@ class Api::V1::UsersController < ApplicationController
                 "X-Mashape-Key" => ENV['X_MASHAPE_KEY'], 
                 "X-Mashape-Host" => ENV['X_MASHAPE_HOST']
             }
-            byebug
+            # byebug
             
 
         genre_array = JSON.parse(response.raw_body)['genres']

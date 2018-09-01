@@ -1,11 +1,11 @@
 # require_relative '../../../services/stream_from_genre_service'
 
 class Api::V1::UsersController < ApplicationController
-    skip_before_action :authorized, only: [:index, :register]
-    # include ListenNotes
+    # skip_before_action :authorized, only: [:index, :register]
+    # # include ListenNotes
 
-    before_action :get_user, only: [:show, :update, :destroy]
-    before_action :create_genres, only: [:register]
+    # before_action :get_user, only: [:show, :update, :destroy]
+    # before_action :create_genres, only: [:register]
     
 
     # Not for use in front end client
@@ -29,6 +29,8 @@ class Api::V1::UsersController < ApplicationController
         else
             render json: { errors: @user.errors.full_messages }, status: :unprocessible_entity
         end
+        p @user.id
+        Playlist.create(title: 'Welcome Playlist!', description:'This is your first playlist! Feel free to edit this and makeit your own!', user_id: @user.id)
     end
 
     def profile

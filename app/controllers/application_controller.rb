@@ -1,11 +1,10 @@
 class ApplicationController < ActionController::API
 
-    before_action :authorized
+    # before_action :authorized
     
     def issue_token(payload)
         # payload here is an object that looks like #payload => { key: 'value'}
         JWT.encode(payload, ENV['JWT_CODE'], 'HS256')
-        # byebug
     end
 
     def auth_header

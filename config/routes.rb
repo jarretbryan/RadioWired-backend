@@ -3,11 +3,11 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :genre, only: [:index]
-      resources :users, only: [:index, :show, :destroy] do
-        resources :playlists do
-          resources :subscriptions
-        end
+      resources :users, only: [:index, :show, :destroy]
+      resources :playlists do
+        resources :subscriptions
       end
+      
       post 'auth/register', to: 'users#register'
       post '/login', to: 'auth#create'
       get '/profile', to: 'users#profile'

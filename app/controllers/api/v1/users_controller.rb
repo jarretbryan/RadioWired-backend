@@ -4,8 +4,8 @@ class Api::V1::UsersController < ApplicationController
     # skip_before_action :authorized, only: [:index, :register]
     # # include ListenNotes
 
-    # before_action :get_user, only: [:show, :update, :destroy]
-    # before_action :create_genres, only: [:register]
+    before_action :get_user, only: [:show, :update, :destroy]
+    before_action :create_genres, only: [:register]
     
 
     # Not for use in front end client

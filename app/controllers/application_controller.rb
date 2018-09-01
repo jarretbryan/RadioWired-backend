@@ -4,11 +4,13 @@ class ApplicationController < ActionController::API
     
     def issue_token(payload)
         # payload here is an object that looks like #payload => { key: 'value'}
-        JWT.encode(payload, ENV['JWT_CODE'])
+        JWT.encode(payload, ENV['JWT_CODE'], 'HS256')
+        # byebug
     end
 
     def auth_header
         request.headers['Authorization']
+        # ie and authorization header that has Authorization: Bearer <insert JWT token here>
     end
 
     def decoded_token

@@ -9,6 +9,8 @@ Rails.application.routes.draw do
         end
       end
       post 'auth/register', to: 'users#register'
+      post '/login', to: 'auth#create'
+      get '/profile', to: 'users#profile'
     end
   end
 end

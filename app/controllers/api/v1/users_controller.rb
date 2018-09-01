@@ -31,6 +31,14 @@ class Api::V1::UsersController < ApplicationController
         end
     end
 
+    def profile
+        if logged_in
+            render json: {user: UserSerializer.new(current_user)}, status: :accepted
+        else
+            render json: {message: 'User not found'}, status: :not_found
+        end
+    end
+
     def destroy
         @user.delete 
     end

@@ -1,7 +1,7 @@
 # require_relative '../../../services/stream_from_genre_service'
 
 class Api::V1::UsersController < ApplicationController
-    # skip_before_action :authorized, only: [:index, :register]
+    skip_before_action :authorized, only: [:index, :register]
     # # include ListenNotes
 
     before_action :get_user, only: [:show, :update, :destroy]

@@ -11,6 +11,7 @@ Rails.application.routes.draw do
       post 'auth/register', to: 'users#register'
       post '/login', to: 'auth#create'
       get '/profile', to: 'users#profile'
+      post '/quizresults', to: 'listennotes#create'
     end
   end
 end

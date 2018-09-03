@@ -11,7 +11,7 @@ class Api::V1::PlaylistsController < ApplicationController
         render json: @playlist
     end
 
-    def create
+    def create        
         @playlist = Playlist.create(new_playlist_params)
         if @playlist.save
             response ={message: 'New Playlist generated'}

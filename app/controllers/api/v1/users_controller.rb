@@ -29,8 +29,6 @@ class Api::V1::UsersController < ApplicationController
         else
             render json: { errors: @user.errors.full_messages }, status: :unprocessible_entity
         end
-        p @user.id
-        Playlist.create(title: 'Welcome Playlist!', description:'This is your first playlist! Feel free to edit this and makeit your own!', user_id: @user.id)
     end
 
     def profile

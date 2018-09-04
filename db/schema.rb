@@ -53,7 +53,7 @@ ActiveRecord::Schema.define(version: 2018_08_31_135812) do
     t.string "email"
     t.string "password_digest"
     t.string "username"
-    t.string "profile_image"
+    t.string "profile_image", default: "https://cdn.pixabay.com/photo/2017/10/15/00/55/headphones-2852336_960_720.png"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -22,6 +22,7 @@ class Api::V1::ListennotesController < ApplicationController
         random_selection_array.each do |stream_obj|
             Subscription.create(website: stream_obj['website'], publisher: stream_obj['publisher'], title: stream_obj['title'], country: stream_obj['country'], image: stream_obj['image'], rss: stream_obj['rss'], language: stream_obj['language'], thumbnail: stream_obj['thumbnail'], description: stream_obj['description'], ep_id: stream_obj['id'], playlist_id: @user.playlists[-1].id)
         end
+        render json: {subscription: Subscription.last}
     end
 
     private 

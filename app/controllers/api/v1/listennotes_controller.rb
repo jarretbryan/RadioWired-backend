@@ -25,6 +25,13 @@ class Api::V1::ListennotesController < ApplicationController
         render json: {subscription: Subscription.last}
     end
 
+    def episodes_create
+    end
+
+    def episodes_delete
+    end
+
+
     private 
 
     def new_cast_params

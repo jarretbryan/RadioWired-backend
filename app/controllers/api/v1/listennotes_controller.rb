@@ -26,9 +26,21 @@ class Api::V1::ListennotesController < ApplicationController
     end
 
     def episodes_create
+
+        id_num = new_ep_params[:stream_id]
+
+        episodes_arr = get_episode(id_num)
+
+        latest_ep = episodes_arr[0]
+
+        Episode.create(title: latest_ep['title'], description: latest_ep['description'], audio: latest_ep['audio'], episode_id: latest_ep['id'], audio_length: latest_ep['audio_length'])
+
+        render json: {latest_episode: Episode.last}
+
     end
 
     def episodes_delete
+        Episode.last.delete
     end
 
 
@@ -36,6 +48,10 @@ class Api::V1::ListennotesController < ApplicationController
 
     def new_cast_params
         params.require(:listennote).permit(:user_id, :list_length, :selectedGenres => [])
+    end
+
+    def new_ep_params
+        params.require(:listennote).permit(:stream_id)
     end
 
     def get_genre(num)
@@ -47,6 +63,18 @@ class Api::V1::ListennotesController < ApplicationController
             }
 
         JSON.parse(response.raw_body)['channels']
+    end
+
+    def get_episode(num)
+        response = Unirest.get 'https://listennotes.p.mashape.com/api/v1/podcasts/'+num, 
+            headers:{
+                "X-Mashape-Key" => ENV['X_MASHAPE_KEY'], 
+                "X-Mashape-Host" => ENV['X_MASHAPE_HOST']
+            }
+
+            
+
+        JSON.parse(response.raw_body)['episodes']
     end
     
 end

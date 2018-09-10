@@ -1,6 +1,6 @@
 class Api::V1::PlaylistsController < ApplicationController
 
-    before_action :get_playlist, only: [:show]
+    before_action :get_playlist, only: [:show, :update]
 
     def index
         @playlists = Playlist.all
@@ -21,6 +21,15 @@ class Api::V1::PlaylistsController < ApplicationController
         end
     end
 
+    def update
+        if @playlist.update(update_params)
+            response ={message: 'Playlist successfully update!'}
+            render json: @playlist, status: :accepted
+        else
+            render json: { errors: @playlist.errors.full_messages }, status: :unprocessible_entity
+        end      
+    end
+
     private
 
     def get_playlist
@@ -29,6 +38,10 @@ class Api::V1::PlaylistsController < ApplicationController
 
     def new_playlist_params
         params.permit(:title, :description, :genre, :user_id)
+    end
+
+    def update_params
+        params.permit(:title, :description)
     end
 
 end

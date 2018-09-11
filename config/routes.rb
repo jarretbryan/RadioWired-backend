@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :genre, only: [:index]
+      resources :favorites
       resources :users, only: [:index, :show, :destroy]
       resources :playlists do
         resources :subscriptions
@@ -14,6 +15,8 @@ Rails.application.routes.draw do
       post '/quizresults', to: 'listennotes#create'
       post '/play-episode', to: 'listennotes#episodes_create'
       delete '/delete-episode', to: 'listennotes#episodes_delete'
+
+
     end
   end
 end

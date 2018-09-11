@@ -5,6 +5,8 @@ class User < ApplicationRecord
     has_secure_password
 
     has_many :playlists
+    has_many :favorites
+    has_many :subscriptions, through: :favorites
     
 
 end

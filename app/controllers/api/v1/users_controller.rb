@@ -4,7 +4,7 @@ class Api::V1::UsersController < ApplicationController
     skip_before_action :authorized, only: [:index, :register]
     # # include ListenNotes
 
-    before_action :get_user, only: [:show, :update, :destroy]
+    before_action :get_user, only: [:show, :update, :destroy, :favorites]
     before_action :create_genres, only: [:register]
     
 
@@ -41,6 +41,11 @@ class Api::V1::UsersController < ApplicationController
 
     def destroy
         @user.delete 
+    end
+
+    def favorites
+        @favorites = @user.subscriptions
+        render json: @favorites
     end
 
 

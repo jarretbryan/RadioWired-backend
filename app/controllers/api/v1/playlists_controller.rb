@@ -1,6 +1,6 @@
 class Api::V1::PlaylistsController < ApplicationController
 
-    before_action :get_playlist, only: [:show, :update]
+    before_action :get_playlist, only: [:show, :update, :destroy]
 
     def index
         @playlists = Playlist.all
@@ -28,6 +28,11 @@ class Api::V1::PlaylistsController < ApplicationController
         else
             render json: { errors: @playlist.errors.full_messages }, status: :unprocessible_entity
         end      
+    end
+
+    def destroy
+        @playlist.delete
+        render json: {message: "deleted"}, status: :accepted
     end
 
     private
